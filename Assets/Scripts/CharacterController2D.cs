@@ -3,33 +3,42 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
+	[Header("Components")]
 	private PlayerMovement playerMovement;
-	[SerializeField] private float jumpForce = 400f;                          // Amount of force added when the player jumps.
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-	[SerializeField] private bool airControl = false;                         // Whether or not a player can steer while jumping;
+	private Rigidbody2D rb2D;
+	public GameObject sprite;
+
+	[Header("Checks")]
 	[SerializeField] private LayerMask whatIsGround;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] private Transform frontCheck;
-	           
-
 	const float checkRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool grounded;            // Whether or not the player is grounded.
-	public bool doubleJump;
-	public bool jumping;
 	public bool touchingFront;
-	public bool wallSliding;
-	public float wallSlidingSpeed;
-	public bool walljumping;
-	public float xWallForce;
-	public float yWallForce;
-	public float wallJumpTime;
+	private bool facingRight = true;  // For determining which way the player is currently facing.
 
+	[Header("Movement")]
+	private Vector3 velocity = Vector3.zero;
+	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
+	[SerializeField] private float jumpForce = 400f;                          // Amount of force added when the player jumps.
+	[SerializeField] private bool airControl = false;                         // Whether or not a player can steer while jumping;
+	           
+	[Header("Jumping")]
+	public bool jumping;
+	public bool doubleJump;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
+
+	[Header("Wall Sliding")]
+	public bool wallSliding;
+	public float wallSlidingSpeed;
+
+	[Header("Wall Jumping")]
+	public bool walljumping;
+	public float wallJumpTime;
+	public float xWallForce;
+	public float yWallForce;
 	
-	private Rigidbody2D rb2D;
-	private bool facingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 velocity = Vector3.zero;
 
 	private void Awake()
 	{
@@ -166,9 +175,9 @@ public class CharacterController2D : MonoBehaviour
 		facingRight = !facingRight;
 
 		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
+		Vector3 theScale = sprite.transform.localScale;
 		theScale.x *= -1;
-		transform.localScale = theScale;
+		sprite.transform.localScale = theScale;
 	}
 
 
