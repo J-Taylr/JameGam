@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8696431915735343693}
   - component: {fileID: 8120595125853820621}
   - component: {fileID: 438856643843649359}
+  - component: {fileID: 6090424393227292380}
   m_Layer: 0
   m_Name: GreenEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716884916627582145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.735, y: -0.733, z: -23.8678}
+  m_LocalPosition: {x: -6.735, y: -0.733, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5542877718424857519}
@@ -71,7 +72,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e456ab20cc2f14f9d40145b9a21f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colour: 1
+  enemyColour: 1
+--- !u!50 &6090424393227292380
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716884916627582145}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &4214421287307196200
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse1))
         {
+            Debug.Log("Shot!");
             Shoot();
         }
     }
@@ -53,15 +54,14 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-
     void FireBullet()
     {
         //Instantiate the bullet and send it what colour it should be
         GameObject bulletInstance = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-        //bulletInstance.GetComponent<Bullet>().MoveBullet(aimWeapon.offset.x, aimWeapon.offset.y);
+        
         bulletInstance.GetComponent<Bullet>().MoveBullet(aimWeapon.transform.rotation);
-
         bulletInstance.GetComponent<Bullet>().SetColour(bulletColour);
+
         ammo--;
         bulletColour++;
     }

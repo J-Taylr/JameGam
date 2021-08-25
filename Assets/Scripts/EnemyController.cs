@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum ColourType {Red, Green, Blue, Yellow}
-    public ColourType colour;
+    [SerializeField]private int enemyColour;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Die()
     {
-        //if bullet its equal to colour type, destroy
-        //otherwise do nothing
-        //if player touches enemy, destroy player 
+        Destroy(gameObject);
+    }
+
+    public int GetColour()
+    {
+        return enemyColour;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject collider = collision.gameObject;
+        if (collider.CompareTag("Player"))
+        {
+            collider.GetComponent<CharacterController2D>().Die();
+        }
     }
 }

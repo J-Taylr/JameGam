@@ -180,4 +180,9 @@ public class CharacterController2D : MonoBehaviour
     {
 		walljumping = false;
     }
+
+	public void Die()
+	{
+		Destroy(gameObject);
+	}
 }

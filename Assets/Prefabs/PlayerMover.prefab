@@ -227,6 +227,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6243013953952133884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5182379834503784510}
+  m_Layer: 10
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5182379834503784510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243013953952133884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0512, y: 0.0052, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 890549849753222940}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7494769704269898750
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +271,6 @@ GameObject:
   - component: {fileID: 7494769704269898739}
   - component: {fileID: 7494769704269898737}
   - component: {fileID: 7494769704269898736}
-  - component: {fileID: 4734520765396835809}
   m_Layer: 0
   m_Name: PlayerMover
   m_TagString: Player
@@ -378,20 +407,6 @@ CircleCollider2D:
   m_Offset: {x: -0.09, y: -0.23}
   serializedVersion: 2
   m_Radius: 0.3895824
---- !u!114 &4734520765396835809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7494769704269898750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b97690261e55d5d4c9386c56ffb894e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firepoint: {fileID: 0}
-  bulletPrefab: {fileID: 7161402552669493694, guid: 7194f1822ee0b3a49913c719167ad912, type: 3}
 --- !u!1 &7494769704817002252
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +464,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.058, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5182379834503784510}
   m_Father: {fileID: 2101008581985382788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -514,6 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2101008581985382788}
   - component: {fileID: 3992124528571670965}
+  - component: {fileID: 6231895501699660413}
   m_Layer: 0
   m_Name: Aimer
   m_TagString: Untagged
@@ -550,3 +567,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   characterController2D: {fileID: 0}
+  offset: {x: 0, y: 0}
+  angle: 0
+--- !u!114 &6231895501699660413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906426154628427622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97690261e55d5d4c9386c56ffb894e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firepoint: {fileID: 5182379834503784510}
+  bulletPrefab: {fileID: 7161402552669493694, guid: 7194f1822ee0b3a49913c719167ad912, type: 3}
+  aimWeapon: {fileID: 0}

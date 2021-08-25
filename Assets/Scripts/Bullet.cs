@@ -26,9 +26,17 @@ public class Bullet : MonoBehaviour
         rb.AddForce(-transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        print(other.gameObject.name);
+        GameObject collider = collision.gameObject;
+        if (collider.CompareTag("Enemy") && collider.GetComponent<EnemyController>().GetColour() == bulletColour)
+        {
+            collider.GetComponent<EnemyController>().Die();
+        }
+        else if (collider.CompareTag("Player"))
+        {
+            collider.GetComponent<CharacterController2D>().Die();
+        }
         Destroy(gameObject);
     }
 
