@@ -5,10 +5,12 @@ using UnityEngine;
 public class AimWeapon : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private CharacterController2D characterController2D;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        characterController2D = GetComponentInParent<CharacterController2D>();
     }
 
 
@@ -30,7 +32,14 @@ public class AimWeapon : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 180f, -angle);
+
+        print(angle);
+        
     }
+
+    
+
+
 
 
 }
