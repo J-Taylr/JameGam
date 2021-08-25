@@ -6,7 +6,10 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]private Rigidbody2D rb;
     private int bulletColour;
-    private float bulletSpeed = 10f;
+    private float bulletSpeed = 10;
+
+    private float bulletX;
+    private float bulletY;
 
     void Start()
     {
@@ -15,11 +18,17 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(bulletSpeed, rb.velocity.y);
+        
+    }
+
+    public void MoveBullet(Quaternion rotation)
+    {
+        rb.AddForce(-transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        print(other.gameObject.name);
         Destroy(gameObject);
     }
 

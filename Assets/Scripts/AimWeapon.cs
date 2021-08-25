@@ -6,7 +6,8 @@ public class AimWeapon : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CharacterController2D characterController2D;
-
+    public Vector2 offset;
+    public float angle;
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -27,13 +28,24 @@ public class AimWeapon : MonoBehaviour
 
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(transform.position);
 
-        Vector2 offset = new Vector2(mouse.x - screenPoint.x, mouse.y - screenPoint.y);
+        offset = new Vector2(mouse.x - screenPoint.x, mouse.y - screenPoint.y);
 
-        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+       angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 180f, -angle);
 
-        print(angle);
+        
+        if (angle > 90 || angle < -90)
+        {
+            transform.localRotation = Quaternion.Euler(180, 180, angle);
+            characterController2D.FlipRight();
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Euler(0f, 180, -angle);
+            characterController2D.FlipLeft();
+        }
+
         
     }
 
