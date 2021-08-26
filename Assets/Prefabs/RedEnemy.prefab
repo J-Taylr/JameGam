@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyColour: 0
+  room: {fileID: 0}
 --- !u!50 &8758656745426211309
 Rigidbody2D:
   serializedVersion: 4
@@ -175,4 +176,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 6
