@@ -5,15 +5,25 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]private Rigidbody2D rb;
-    private int bulletColour;
+    [SerializeField] private SpriteRenderer sprite;
+    public List<GameObject> particlePrefab = new List<GameObject>();
+    public GameManager.colourType KillColour;
+    public TrailRenderer trail;
     private float bulletSpeed = 10;
 
     private float bulletX;
     private float bulletY;
 
+   
+    private void Awake()
+    {
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        trail = GetComponentInChildren<TrailRenderer>();
+    }
+
     void Start()
     {
-        Debug.Log(bulletColour);
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -26,27 +36,74 @@ public class Bullet : MonoBehaviour
         rb.AddForce(-transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+     void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collider = collision.gameObject;
-        if (collider.CompareTag("Enemy") && collider.GetComponent<EnemyController>().GetColour() == bulletColour)
-        {
-            collider.GetComponent<EnemyController>().Die();
-        }
-        else if (collider.CompareTag("Player"))
+       
+        if (collider.CompareTag("Player"))
         {
             collider.GetComponent<CharacterController2D>().Die();
         }
+        Destroy();
+    }
+
+    public void SetColour()
+    {
+        switch (GameManager.Instance.colour)
+        {
+            case GameManager.colourType.RED:
+                KillColour = GameManager.colourType.RED;
+                sprite.color = GameManager.Instance.A_Red;
+                SpawnParticle("red");
+
+                break;
+            case GameManager.colourType.GREEN:
+                KillColour = GameManager.colourType.GREEN;
+                sprite.color = GameManager.Instance.A_Green;
+                SpawnParticle("green");
+                break;
+
+            case GameManager.colourType.BLUE:
+                KillColour = GameManager.colourType.BLUE;
+                sprite.color = GameManager.Instance.A_Blue;
+                SpawnParticle("blue");
+                break;
+            
+
+            case GameManager.colourType.YELLOW:
+                KillColour = GameManager.colourType.YELLOW;
+                sprite.color = GameManager.Instance.A_Yellow;
+                SpawnParticle("yellow");
+                break;
+        }
+        trail.startColor = sprite.color;
+        GameManager.Instance.NextColour();
+    }
+
+    public void Destroy()
+    {
         Destroy(gameObject);
     }
 
-    public void SetColour(int bulletColour)
+    public void SpawnParticle(string colour)
     {
-        this.bulletColour = bulletColour;
-    }
+        switch (colour)
+        {
+            case "red":
+                Instantiate(particlePrefab[0], transform.position, Quaternion.identity);
 
-    public int GetColour()
-    {
-        return bulletColour;
+                break;
+            case "green":
+                Instantiate(particlePrefab[1], transform.position, Quaternion.identity);
+                break;
+            case "blue":
+                Instantiate(particlePrefab[2], transform.position, Quaternion.identity);
+                break;
+
+            case "yellow":
+                Instantiate(particlePrefab[3], transform.position, Quaternion.identity);
+                break;
+        }
     }
+    
 }

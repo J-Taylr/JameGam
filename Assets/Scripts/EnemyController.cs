@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]private int enemyColour;
+   // [SerializeField]private int enemyColour;
+    public GameManager.colourType enemyColour;
 
     public void Die()
     {
         Destroy(gameObject);
     }
 
-    public int GetColour()
-    {
-        return enemyColour;
-    }
+   
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,6 +20,20 @@ public class EnemyController : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             collider.GetComponent<CharacterController2D>().Die();
+        }
+        if (collider.CompareTag("Bullet"))
+        {
+          Bullet bullet = collider.GetComponent<Bullet>();
+
+            if (bullet.KillColour == enemyColour)
+            {
+                Die();
+            }
+            else
+            {
+                bullet.Destroy();
+            }
+
         }
     }
 }
