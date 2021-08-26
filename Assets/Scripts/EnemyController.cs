@@ -6,9 +6,16 @@ public class EnemyController : MonoBehaviour
 {
    // [SerializeField]private int enemyColour;
     public GameManager.colourType enemyColour;
+    public RoomManager room;
 
+
+    private void Awake()
+    {
+        room = GetComponentInParent<RoomManager>();
+    }
     public void Die()
     {
+        room.enemysInRoom.Remove(this.gameObject);
         Destroy(gameObject);
     }
 

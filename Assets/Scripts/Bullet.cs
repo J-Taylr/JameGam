@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     private float bulletX;
     private float bulletY;
 
+    public int bulletLife = 3;
    
     private void Awake()
     {
@@ -38,13 +39,26 @@ public class Bullet : MonoBehaviour
 
      void OnCollisionEnter2D(Collision2D collision)
     {
+
         GameObject collider = collision.gameObject;
-       
+        if (collider.CompareTag("Enemy"))
+        {
+            Destroy();
+        }
         if (collider.CompareTag("Player"))
         {
             collider.GetComponent<CharacterController2D>().Die();
+            Destroy();
         }
-        Destroy();
+        if (collider.CompareTag("Ground"))
+        {
+            bulletLife--;
+            if (bulletLife <= 0)
+            {
+                Destroy();
+            }
+        }
+        
     }
 
     public void SetColour()

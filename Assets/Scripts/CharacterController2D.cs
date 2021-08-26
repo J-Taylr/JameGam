@@ -164,14 +164,14 @@ public class CharacterController2D : MonoBehaviour
 		
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = sprite.transform.localScale;
-		theScale.x = -2;
+		theScale.x = -5;
 		sprite.transform.localScale = theScale;
 	}
 
     public void FlipLeft()
     {
 		Vector3 theScale = sprite.transform.localScale;
-		theScale.x = 2;
+		theScale.x = 5;
 		sprite.transform.localScale = theScale;
 	}
 
