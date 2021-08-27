@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
    // [SerializeField]private int enemyColour;
+    private Transform playerTransform;
     public GameManager.colourType enemyColour;
     public RoomManager room;
 
@@ -42,5 +43,11 @@ public class EnemyController : MonoBehaviour
             }
 
         }
+    }
+
+    void FindPlayer()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        playerTransform = player.GetComponent<Transform>();
     }
 }

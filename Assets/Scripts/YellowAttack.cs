@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class YellowAttack : MonoBehaviour
 {
+    [SerializeField] private GameObject laserPrefab;
     [SerializeField] private Transform yellowTransform;
+    [SerializeField] private Transform firepoint;
     [SerializeField] private LayerMask layer;
     [SerializeField] private float yellowRange = 10f;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float maxTimer = 2f;
     private bool canAttack = true;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +22,7 @@ public class YellowAttack : MonoBehaviour
     void Update()
     {
         DetectPlayer();
+        AttackCooldown();
     }
 
     void DetectPlayer()
@@ -31,6 +36,21 @@ public class YellowAttack : MonoBehaviour
 
     void Attack(Transform playerTransform)
     {
-        Debug.Log("Got it!");
+        GameObject laserInstance = Instantiate(laserPrefab, firepoint.position, playerTransform.rotation);
+        laserInstance.GetComponent<Laser>().MoveLaser(playerTransform);
+        canAttack = false;
+    }
+
+    void AttackCooldown()
+    {   
+        if (!canAttack)
+        {
+                attackCooldown -= Time.deltaTime;
+            if (attackCooldown <= 0)
+            {
+                attackCooldown = maxTimer;
+                canAttack = true;
+            }
+        }
     }
 }

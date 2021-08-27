@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6117802468287216983}
   - component: {fileID: 9070110225631608276}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,9 +24,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779683311218559407}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 0.26, z: 0}
-  m_LocalScale: {x: 0.9747559, y: 0.9747559, z: 0.9747559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.173, y: 0.272, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 648873991708073345}
   m_RootOrder: 0
@@ -82,6 +82,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2038004089759178861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8046151202061015023}
+  m_Layer: 12
+  m_Name: Firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8046151202061015023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038004089759178861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.414, y: -0.531, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 648873991708073345}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8490736777930044416
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +128,7 @@ GameObject:
   - component: {fileID: 2857648075793530984}
   - component: {fileID: 3507861409116210609}
   - component: {fileID: 5730289503465088551}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: YellowEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,6 +147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6117802468287216983}
+  - {fileID: 8046151202061015023}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202,11 +233,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 2
   radius: 0.5
-  height: 2
+  height: 3
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 5
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -271,8 +302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c1383b9626a6f49a9f12168535a7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 1801778660542746709, guid: bc0e575d2b171634abff93b768ed0ccf, type: 3}
   yellowTransform: {fileID: 648873991708073345}
+  firepoint: {fileID: 8046151202061015023}
   layer:
     serializedVersion: 2
     m_Bits: 1024
   yellowRange: 10
+  attackCooldown: 2
+  maxTimer: 2
