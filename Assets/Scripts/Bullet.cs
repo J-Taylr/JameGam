@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    public void MoveBullet(Quaternion rotation)
+    public void MoveBullet()
     {
         rb.AddForce(-transform.right * bulletSpeed, ForceMode2D.Impulse);
     }

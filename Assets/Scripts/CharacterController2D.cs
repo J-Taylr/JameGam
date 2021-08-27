@@ -11,10 +11,13 @@ public class CharacterController2D : MonoBehaviour
 	[Header("Checks")]
 	[SerializeField] private LayerMask whatIsGround;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
-	[SerializeField] private Transform frontCheck;
+	[SerializeField] private Transform rightCheck;
+	[SerializeField] private Transform leftCheck;
+
 	const float checkRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool grounded;            // Whether or not the player is grounded.
 	public bool touchingFront;
+	public bool touchingBack;
 	
 
 	[Header("Movement")]
@@ -30,7 +33,8 @@ public class CharacterController2D : MonoBehaviour
 	public float lowJumpMultiplier = 2f;
 
 	[Header("Wall Sliding")]
-	public bool wallSliding;
+	public bool rightWallSlide;
+	public bool leftWallSlide;
 	public float wallSlidingSpeed;
 
 	[Header("Wall Jumping")]
@@ -64,19 +68,26 @@ public class CharacterController2D : MonoBehaviour
 			doubleJump = true;
 		}
 
-		touchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+		touchingFront = Physics2D.OverlapCircle(rightCheck.position, checkRadius, whatIsGround);
+		touchingBack = Physics2D.OverlapCircle(leftCheck.position, checkRadius, whatIsGround);
 		if (touchingFront && !grounded && playerMovement.horizontalMove != 0)
-        {
-			wallSliding = true;
+		{
+			rightWallSlide = true;
 			doubleJump = true;
 		}
-        else
+        else if (touchingBack && !grounded && playerMovement.horizontalMove != 0)
         {
-			wallSliding = false;
-        }
+			leftWallSlide = true;
+			doubleJump = true;
+		}
+		else
+        {
+			leftWallSlide = false; 
+			rightWallSlide = false;
+		}
 
 
-		if (wallSliding)
+		if (rightWallSlide || leftWallSlide)
         {
 			rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
@@ -86,7 +97,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
+		if (Input.GetKeyDown(KeyCode.Space) && rightWallSlide == true)
 		{
 			walljumping = true;
 
@@ -94,9 +105,13 @@ public class CharacterController2D : MonoBehaviour
 
 		}
 
-		if (walljumping == true)
+		if (walljumping && rightWallSlide)
 		{
 			rb2D.velocity = new Vector2(xWallForce * -playerMovement.horizontalMove, yWallForce);
+		}
+		else if (walljumping && leftWallSlide)
+        {
+			rb2D.velocity = new Vector2(-xWallForce * -playerMovement.horizontalMove, yWallForce);
 		}
 
 	}
@@ -147,11 +162,11 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Jump()
     {
-		if (rb2D.velocity.y < 0 && !wallSliding)
+		if (rb2D.velocity.y < 0 && !rightWallSlide)
         {
 			rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-		else if (rb2D.velocity.y > 0 && !Input.GetButton("Jump") && !wallSliding)
+		else if (rb2D.velocity.y > 0 && !Input.GetButton("Jump") && !rightWallSlide)
         {
 			rb2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
@@ -181,8 +196,28 @@ public class CharacterController2D : MonoBehaviour
 		walljumping = false;
     }
 
+	public void DisableScripts()
+    {
+		GetComponentInChildren<AimWeapon>().enabled = false;
+		GetComponentInChildren<PlayerShoot>().enabled = false;
+		Move(0, false);
+		playerMovement.StopWalk();
+		playerMovement.enabled = false;
+		rb2D.freezeRotation = false;
+		this.enabled = false;
+	}
+
+	public void EnableScripts()
+    {
+		GetComponentInChildren<AimWeapon>().enabled = true;
+		GetComponentInChildren<PlayerShoot>().enabled = true;
+		playerMovement.enabled = true;
+		rb2D.freezeRotation = true;
+		this.enabled = true;
+	}
+
 	public void Die()
 	{
-		Destroy(gameObject);
+		DisableScripts();
 	}
 }

@@ -29,6 +29,7 @@ Transform:
   m_Children:
   - {fileID: 6554732077685523857}
   - {fileID: 8261674107434757531}
+  - {fileID: 782078267565483749}
   m_Father: {fileID: 8261674107961543017}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -114,6 +115,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1522219945673450238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782078267565483749}
+  m_Layer: 10
+  m_Name: Backcheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782078267565483749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522219945673450238}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3039999, y: 0.0060000457, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7182128344437858540}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793177552189740034
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793177552189740034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22099972, y: 0, z: 0}
+  m_LocalPosition: {x: 0.304, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7182128344437858540}
@@ -341,6 +372,8 @@ MonoBehaviour:
   firepoint: {fileID: 6723340443552318120}
   bulletPrefab: {fileID: 7161402552669493694, guid: 7194f1822ee0b3a49913c719167ad912, type: 3}
   aimWeapon: {fileID: 0}
+  standardAmmoReset: 4
+  ammo: 4
 --- !u!1 &8188489570030561325
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8261674107434757530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06700039, y: -0.59299994, z: 0}
+  m_LocalPosition: {x: -0.061, y: -0.659, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7182128344437858540}
@@ -483,7 +516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8261674107961543016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.952, y: -5.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 662354789095480840}
@@ -525,9 +558,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 8261674107434757531}
-  frontCheck: {fileID: 6554732077685523857}
+  rightCheck: {fileID: 0}
+  leftCheck: {fileID: 0}
   grounded: 0
   touchingFront: 0
+  touchingBack: 0
   m_MovementSmoothing: 0.05
   jumpForce: 600
   airControl: 1
@@ -539,7 +574,7 @@ MonoBehaviour:
   wallSlidingSpeed: 5
   walljumping: 0
   wallJumpTime: 0.05
-  xWallForce: 1
+  xWallForce: 3
   yWallForce: 10
 --- !u!50 &8261674107961543013
 Rigidbody2D:

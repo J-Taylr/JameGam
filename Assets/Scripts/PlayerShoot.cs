@@ -9,7 +9,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private AimWeapon aimWeapon;
 
     private int bulletColour = 0;
-    private int ammo = 4;
+    public int standardAmmoReset = 4;
+    public int ammo = 4;
     private int reloads = 0;
 
     private void Awake()
@@ -21,6 +22,11 @@ public class PlayerShoot : MonoBehaviour
     {
         HandleShooting();
         HandleAmmo();
+    }
+
+    public void ResetAmmo()
+    {
+        ammo = standardAmmoReset;
     }
 
     public void AddReload(int reloads)
@@ -60,7 +66,7 @@ public class PlayerShoot : MonoBehaviour
         GameObject GO = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
         Bullet bulletinstance = GO.GetComponent<Bullet>();
         bulletinstance.SetColour();
-        bulletinstance.MoveBullet(aimWeapon.transform.rotation);
+        bulletinstance.MoveBullet();
         ammo--;
         bulletColour++;
     }

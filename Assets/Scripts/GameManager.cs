@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class GameManager : MonoBehaviour
     public enum colourType {RED, GREEN, BLUE, YELLOW}
     public colourType colour;
 
+    public Transform lastSpawn;
+    public GameObject player;
+    public CharacterController2D playerController;
+
     public bool gameActive;
     public float time;
     public TextMeshProUGUI timeText;
@@ -36,10 +41,13 @@ public class GameManager : MonoBehaviour
     public Color A_Green;
     public Color A_Yellow;
 
-
+    
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<CharacterController2D>();
+
         A_Red = new Color(0.9803922f, 0, 0.1803922f, 1);
         A_Blue = new Color(0, 0.1803922f, 0.9803922f, 1);
         A_Green = new Color(0.09803922f, 0.9803922f, 0.254902f, 1);
@@ -90,4 +98,23 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+
+    public void SetSpawn(Transform spawn)
+    {
+        print("spawn set");
+        lastSpawn.transform.position = spawn.transform.position;
+    }
+
+
+    public void ResetRoom()
+    {
+        playerController.EnableScripts();
+        player.transform.position = lastSpawn.transform.position;
+        PlayerShoot shooter = player.GetComponentInChildren<PlayerShoot>();
+        shooter.ammo = shooter.standardAmmoReset;
+    }
+
+
+
 }
