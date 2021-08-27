@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    public CameraMover cam;
+
     public int roomNum = 1;
 
-    public GameObject LockedDoor;
+    public Animator LockedDoor;
 
     public bool roomActive = false;
     public bool roomCleared = false;
 
     public List<GameObject> enemysInRoom = new List<GameObject>();
+
+    private void Awake()
+    {
+        cam = Camera.main.GetComponent<CameraMover>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,6 +33,8 @@ public class RoomManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             roomActive = false;
+            
+            cam.TransitionRoom(roomNum);
         }
     }
 
@@ -34,7 +43,7 @@ public class RoomManager : MonoBehaviour
         if (enemysInRoom.Count <= 0)
         {
             roomCleared = true;
-            LockedDoor.SetActive(false);
+            LockedDoor.SetTrigger("openDoor");
         }
     }
 }

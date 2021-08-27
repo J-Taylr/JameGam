@@ -6,11 +6,11 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     public List<Transform> camPositions = new List<Transform>();
-  
+    public int room;
+    private Vector3 velocity = Vector3.zero;
+    public float smoothTime = 0.3f;
 
-    private void Awake()
-    {
-    }
+    bool moveRoom = false;
 
    
 
@@ -20,15 +20,24 @@ public class CameraMover : MonoBehaviour
        
     }
 
+    private void Update()
+    {
+        if (moveRoom)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, camPositions[room].position, ref velocity, smoothTime);
+        }
+        
+        if (transform.position == camPositions[room].position)
+        {
+            moveRoom = false;
+        }
+    }
+
     public void TransitionRoom(int roomNumber)
     {
-       
-       
-        if (camPositions[roomNumber] != null)
-        {
-            transform.position = camPositions[roomNumber].position;
-            
-        }
+
+        room = roomNumber;
+        moveRoom = true;
     }
    
 }
