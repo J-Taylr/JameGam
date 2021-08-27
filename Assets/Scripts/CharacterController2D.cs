@@ -209,6 +209,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void EnableScripts()
     {
+		gameObject.transform.rotation = Quaternion.identity;
 		GetComponentInChildren<AimWeapon>().enabled = true;
 		GetComponentInChildren<PlayerShoot>().enabled = true;
 		playerMovement.enabled = true;

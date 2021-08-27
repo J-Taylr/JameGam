@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserTransform: {fileID: 6301903043531812866}
   rb: {fileID: 6315841827706282282}
-  laserSpeed: 5
+  laserSpeed: 1
 --- !u!50 &6315841827706282282
 Rigidbody2D:
   serializedVersion: 4
@@ -122,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 6245478720611395983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.96883583, z: 1}
   m_Children: []
   m_Father: {fileID: 6301903043531812866}
   m_RootOrder: 0

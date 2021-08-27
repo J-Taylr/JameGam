@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public List<GameObject> particlePrefab = new List<GameObject>();
     public GameManager.colourType KillColour;
     public TrailRenderer trail;
-    private float bulletSpeed = 10;
+    public float bulletSpeed = 10;
 
     private float bulletX;
     private float bulletY;
@@ -32,8 +32,9 @@ public class Bullet : MonoBehaviour
         
     }
 
-    public void MoveBullet()
+    public void MoveBullet(Vector2 vel, float mag)
     {
+        rb.AddForce(vel * mag);
         rb.AddForce(-transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField]private Transform firepoint;
     [SerializeField]private GameObject bulletPrefab;
     [SerializeField] private AimWeapon aimWeapon;
@@ -15,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        rb = GetComponentInParent<Rigidbody2D>();
         aimWeapon = GetComponent<AimWeapon>();
     }
 
@@ -62,11 +64,13 @@ public class PlayerShoot : MonoBehaviour
 
     void FireBullet()
     {
+       
+
         //Instantiate the bullet and send it what colour it should be
         GameObject GO = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
         Bullet bulletinstance = GO.GetComponent<Bullet>();
         bulletinstance.SetColour();
-        bulletinstance.MoveBullet();
+        bulletinstance.MoveBullet(rb.velocity, rb.velocity.magnitude);
         ammo--;
         bulletColour++;
     }

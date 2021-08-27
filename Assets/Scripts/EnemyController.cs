@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
     public RoomManager room;
 
 
-    private void Awake()
+  
+
+    private void Start()
     {
         room = GetComponentInParent<RoomManager>();
     }
@@ -27,7 +29,7 @@ public class EnemyController : MonoBehaviour
         GameObject collider = collision.gameObject;
         if (collider.CompareTag("Player"))
         {
-            collider.GetComponent<CharacterController2D>().Die();
+            GameManager.Instance.PlayerDeath();
         }
         if (collider.CompareTag("Bullet"))
         {

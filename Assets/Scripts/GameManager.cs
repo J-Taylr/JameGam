@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     //starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere
 
@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
     public Transform lastSpawn;
     public GameObject player;
     public CharacterController2D playerController;
+    public Animator UIAnim;
 
+    public bool dead;
     public bool gameActive;
     public float time;
     public TextMeshProUGUI timeText;
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
 
         StopWatch();
+        FullReset();
+        
     }
 
 
@@ -109,12 +113,38 @@ public class GameManager : MonoBehaviour
 
     public void ResetRoom()
     {
+       
+        colour = 0;
         playerController.EnableScripts();
         player.transform.position = lastSpawn.transform.position;
         PlayerShoot shooter = player.GetComponentInChildren<PlayerShoot>();
         shooter.ammo = shooter.standardAmmoReset;
+        dead = false;
+        gameActive = true;
+
     }
 
+    public void PlayerDeath()
+    {
+        if (!dead)
+        {
+            gameActive = false;
+            dead = true;
+            UIAnim.SetTrigger("Death");
+            playerController.Die();
+        }
+    }
 
+    public void FullReset()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene(0);
+            
 
+            
+
+            gameActive = true;
+        }
+    }
 }

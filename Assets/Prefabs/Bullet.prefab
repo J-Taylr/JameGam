@@ -176,6 +176,8 @@ MonoBehaviour:
   - {fileID: 4710122135969898192, guid: 3163999646a85034f9b7aee45ffc3904, type: 3}
   KillColour: 0
   trail: {fileID: 0}
+  bulletSpeed: 15
+  bulletLife: 3
 --- !u!1 &7574946509712352432
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private Transform laserTransform;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float laserSpeed = 10f;
+    [SerializeField] private float laserSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,8 @@ public class Laser : MonoBehaviour
         GameObject collider = collisionInfo.gameObject;
         if (collider.CompareTag("Player"))
         {
-            collider.GetComponent<CharacterController2D>().Die();
+            collider.GetComponent<Rigidbody2D>().AddForce(rb.velocity, ForceMode2D.Impulse);
+            GameManager.Instance.PlayerDeath();
         }
         Destroy(gameObject);
     }

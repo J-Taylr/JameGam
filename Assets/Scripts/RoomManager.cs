@@ -66,10 +66,11 @@ public class RoomManager : MonoBehaviour
             ResetRoom();
         }
 
-        if (enemysInRoom.Count <= 0)
+        if (enemysInRoom.Count <= 0 && !resetting)
         {
             roomCleared = true;
-            LockedDoor.SetTrigger("openDoor");
+            
+            LockedDoor.SetBool("openDoor", true);
         }
     }
 
@@ -78,18 +79,30 @@ public class RoomManager : MonoBehaviour
     {
         if (roomActive)
         {
+            
+            LockedDoor.SetBool("openDoor", false);
             GameManager.Instance.ResetRoom();
             foreach (var item in enemysInRoom)
             {
+                
                 Destroy(item);
             }
+            enemysInRoom.Clear();
+            print("test");
             var newRed = Instantiate(redEnemy, redspwn.position, Quaternion.identity);
+            newRed.transform.parent = this.gameObject.transform;
             enemysInRoom.Add(newRed);
+
             var newBlue = Instantiate(blueEnemy, bluespwn.position, Quaternion.identity);
+            newBlue.transform.parent = this.gameObject.transform;
             enemysInRoom.Add(newBlue);
+
             var newGreen = Instantiate(greenEnemy, greenspwn.position, Quaternion.identity);
+            newGreen.transform.parent = this.gameObject.transform;
             enemysInRoom.Add(newGreen);
+
             var newYellow = Instantiate(yellowEnemy, yellowspwn.position, Quaternion.identity);
+            newYellow.transform.parent = this.gameObject.transform;
             enemysInRoom.Add(newYellow);
             
 
