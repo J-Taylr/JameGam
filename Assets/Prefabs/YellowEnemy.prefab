@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6117802468287216983}
   - component: {fileID: 9070110225631608276}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2857648075793530984}
   - component: {fileID: 3507861409116210609}
   - component: {fileID: 5730289503465088551}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: YellowEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -271,3 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c1383b9626a6f49a9f12168535a7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yellowTransform: {fileID: 648873991708073345}
+  layer:
+    serializedVersion: 2
+    m_Bits: 1024
+  yellowRange: 10

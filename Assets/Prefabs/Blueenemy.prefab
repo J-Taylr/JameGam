@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3548152947520556386}
   - component: {fileID: 151657616147873445}
   - component: {fileID: 5793357793095443799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Blueenemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyColour: 2
+  room: {fileID: 0}
 --- !u!50 &5793357793095443799
 Rigidbody2D:
   serializedVersion: 4
@@ -104,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626017244756739742}
   - component: {fileID: 1496713560880030308}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1880678166001888070}
   - component: {fileID: 1174047926819438286}
   - component: {fileID: 5392478353362384691}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GreenEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   slowdownDistance: 0.6
   pickNextWaypointDist: 1
   endReachedDistance: 0.2
-  alwaysDrawGizmos: 1
+  alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 0
   whenCloseToDestination: 1
   constrainInsideGraph: 0
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5542877718424857519}
   - component: {fileID: 4542237007637141440}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
