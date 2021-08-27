@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    [SerializeField] private Transform laserTransform;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float laserSpeed = 10f;
 
@@ -11,6 +12,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();   
+        laserTransform = gameObject.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class Laser : MonoBehaviour
     public void MoveLaser(Transform playerTransform)
     {
         Debug.Log(playerTransform.position);
-        rb.AddRelativeForce(playerTransform.position * laserSpeed, ForceMode2D.Impulse);
+        rb.AddRelativeForce((playerTransform.position - laserTransform.position) * laserSpeed, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)

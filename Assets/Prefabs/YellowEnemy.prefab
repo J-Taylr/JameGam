@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 8261674107961543017, guid: fb8f190fe99bb7845baa332173ca4d81, type: 3}
+  target: {fileID: 0}
 --- !u!50 &3507861409116210609
 Rigidbody2D:
   serializedVersion: 4
