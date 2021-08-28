@@ -8,7 +8,7 @@ public class RoomManager : MonoBehaviour
 
     public int roomNum = 1;
     public Transform spawnPoint;
-
+    public BackgroundChanger background;
     public Animator LockedDoor;
 
     public bool roomActive = false;
@@ -79,7 +79,7 @@ public class RoomManager : MonoBehaviour
     {
         if (roomActive)
         {
-            
+            background.ResetRoom();
             LockedDoor.SetBool("openDoor", false);
             GameManager.Instance.ResetRoom();
             foreach (var item in enemysInRoom)
@@ -109,4 +109,30 @@ public class RoomManager : MonoBehaviour
         }
         resetting = false;
     }
+
+
+    public void ColourBackground(string colour)
+    {
+        if (roomActive)
+        {
+            switch (colour)
+            {
+                case "Red":
+                    background.ColourLayer("Red");
+                    break;
+                case "Green":
+                    background.ColourLayer("Green");
+                    break;
+                case "Blue":
+                    background.ColourLayer("Blue");
+                    break;
+                case "Yellow":
+                    background.ColourLayer("Yellow");
+                    break;
+
+            }
+        }
+    }
+
+   
 }

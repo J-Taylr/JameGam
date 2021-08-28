@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyColour: 3
   room: {fileID: 0}
+  death: {fileID: 1137100763463121191, guid: cec90b078618316468ca7445ebc0f6d2, type: 3}
 --- !u!114 &2650469074298324140
 MonoBehaviour:
   m_ObjectHideFlags: 0

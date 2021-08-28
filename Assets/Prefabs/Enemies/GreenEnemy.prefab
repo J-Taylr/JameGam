@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyColour: 1
   room: {fileID: 0}
+  death: {fileID: 1751752900673779368, guid: 65808332466e7b74792880806701fe3a, type: 3}
 --- !u!50 &6090424393227292380
 Rigidbody2D:
   serializedVersion: 4
