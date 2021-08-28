@@ -177,7 +177,7 @@ MonoBehaviour:
   KillColour: 0
   trail: {fileID: 0}
   bulletSpeed: 15
-  bulletLife: 3
+  bulletLife: 5
 --- !u!1 &7574946509712352432
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+       
     }
 
     public void MoveBullet(Vector2 vel, float mag)
@@ -53,11 +53,13 @@ public class Bullet : MonoBehaviour
         }
         if (collider.CompareTag("Ground"))
         {
+
             bulletLife--;
             if (bulletLife <= 0)
             {
                 Destroy();
             }
+            rb.AddForce(rb.velocity / 2, ForceMode2D.Impulse);
         }
         
     }

@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public Transform lastSpawn;
     public GameObject player;
+    public PlayerShoot gun;
     public CharacterController2D playerController;
     public Animator UIAnim;
 
@@ -43,12 +44,16 @@ public class GameManager : MonoBehaviour
     public Color A_Green;
     public Color A_Yellow;
 
-    
-
+    public GameObject UIRED;
+    public GameObject UIGREEN;
+    public GameObject UIBLUE;
+    public GameObject UIYELLOW;
     private void Start()
     {
+        
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<CharacterController2D>();
+        gun = player.GetComponentInChildren<PlayerShoot>();
 
         A_Red = new Color(0.9803922f, 0, 0.1803922f, 1);
         A_Blue = new Color(0, 0.1803922f, 0.9803922f, 1);
@@ -63,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         StopWatch();
         FullReset();
-        
+        ShowBullets();
     }
 
 
@@ -113,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetRoom()
     {
-       
+        UIAnim.SetTrigger("Reset");
         colour = 0;
         playerController.EnableScripts();
         player.transform.position = lastSpawn.transform.position;
@@ -146,5 +151,40 @@ public class GameManager : MonoBehaviour
 
             gameActive = true;
         }
+    }
+
+
+    public void ShowBullets()
+    {
+        switch (gun.ammo)
+        {
+            case 4:
+                UIRED.SetActive(true);
+                UIGREEN.SetActive(true);
+                UIBLUE.SetActive(true);
+                UIYELLOW.SetActive(true);
+                break;
+            case 3:
+                UIRED.SetActive(false);
+
+                break;
+            case 2:
+                UIRED.SetActive(false);
+                UIGREEN.SetActive(false);
+                break;
+            case 1:
+                UIRED.SetActive(false);
+                UIGREEN.SetActive(false);
+                UIBLUE.SetActive(false);
+                break;
+            case 0:
+                UIRED.SetActive(false);
+                UIGREEN.SetActive(false);
+                UIBLUE.SetActive(false);
+                UIYELLOW.SetActive(false);
+                break;
+
+        }
+       
     }
 }
