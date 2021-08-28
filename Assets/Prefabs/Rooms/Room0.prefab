@@ -377,7 +377,7 @@ Transform:
   - {fileID: 4124316008502848457}
   - {fileID: 4124316008646402279}
   - {fileID: 1452893962}
-  - {fileID: 4124316007887645059}
+  - {fileID: 3420171364585693238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -396,7 +396,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   roomNum: 1
   spawnPoint: {fileID: 6764725521026737269}
-  LockedDoor: {fileID: 7890870380825351166}
+  LockedDoor: {fileID: 0}
   roomActive: 0
   resetting: 0
   roomCleared: 0
@@ -1691,6 +1691,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5098943255541220817, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5596520230002422228, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1757,14 +1761,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
---- !u!4 &4124316007887645059 stripped
+--- !u!4 &3420171364585693238 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5803299142380211300, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
-  m_PrefabInstance: {fileID: 7617265220259374567}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7890870380825351166 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 303982606205089305, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5098943255541220817, guid: 18272bd5327192846ab6d65299312dcc, type: 3}
   m_PrefabInstance: {fileID: 7617265220259374567}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9105082486689148113

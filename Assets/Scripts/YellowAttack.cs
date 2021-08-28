@@ -9,8 +9,8 @@ public class YellowAttack : MonoBehaviour
     [SerializeField] private Transform firepoint;
     [SerializeField] private LayerMask layer;
     [SerializeField] private float yellowRange = 10f;
-    [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float maxTimer = 2f;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float maxTimer = 1f;
     private bool canAttack = true;
     // Start is called before the first frame update
     void Start()
