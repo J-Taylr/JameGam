@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
     public GameObject UIGREEN;
     public GameObject UIBLUE;
     public GameObject UIYELLOW;
+
+    public float minutes;
+    public float seconds;
+    public float milliseconds;
+
+   
     private void Start()
     {
         
@@ -77,22 +83,38 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             time += Time.deltaTime;
+           
+
+            
         }
 
         DisplayTime(time);
     }
 
+
+
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
 
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float milliseconds = (timeToDisplay % 1) * 1000;
+         minutes = Mathf.FloorToInt(timeToDisplay / 60);
+         seconds = Mathf.FloorToInt(timeToDisplay % 60);
+         milliseconds = (timeToDisplay % 1) * 1000;
 
         timeText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes,seconds, milliseconds);
+
+        float minsTaken = minutes * 10000000;
+        float secTaken = seconds * 1000000;
+
+        float basicTime = minsTaken + secTaken;
+        float timeTaken = basicTime + milliseconds;
+        print(timeTaken);
     }
 
+    void saveTime()
+    {
+       
+    }
 
     public void NextColour()
     {
