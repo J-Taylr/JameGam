@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
     
     public void MoveLaser(Transform playerTransform)
     {
-        Debug.Log(playerTransform.position);
+       // Debug.Log(playerTransform.position);
         rb.AddRelativeForce((playerTransform.position - laserTransform.position) * laserSpeed, ForceMode2D.Impulse);
     }
 

@@ -52,8 +52,9 @@ public class GameManager : MonoBehaviour
     public float minutes;
     public float seconds;
     public float milliseconds;
+    public float timeTaken;
 
-   
+    public int score;
     private void Start()
     {
         
@@ -103,17 +104,34 @@ public class GameManager : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes,seconds, milliseconds);
 
-        float minsTaken = minutes * 10000000;
-        float secTaken = seconds * 1000000;
-
-        float basicTime = minsTaken + secTaken;
-        float timeTaken = basicTime + milliseconds;
-        print(timeTaken);
+       
     }
 
-    void saveTime()
+    public void CalculateScore()
     {
-       
+        float minsTaken = minutes * 100000;
+        float secTaken = seconds * 1000;
+        int millTaken = Mathf.FloorToInt(milliseconds);
+
+        float basicTime = minsTaken + secTaken;
+        timeTaken = basicTime + millTaken;
+        score = Mathf.FloorToInt(timeTaken);
+    }
+
+    
+
+    public void SaveTime()
+    {
+        CalculateScore();
+
+        int firstLvl = PlayerPrefs.GetInt("FirstTime");
+        int overallTime = firstLvl + score;
+
+
+       if (PlayerPrefs.GetInt("Score") > overallTime)
+        {
+            PlayerPrefs.SetInt("Score", overallTime);
+        }
     }
 
     public void NextColour()
@@ -133,8 +151,12 @@ public class GameManager : MonoBehaviour
 
     public void SetSpawn(Transform spawn)
     {
-        print("spawn set");
-        lastSpawn.transform.position = spawn.transform.position;
+        if (spawn != null)
+        {
+            print("spawn set");
+            lastSpawn.transform.position = spawn.transform.position;
+        }
+        else { return; }
     }
 
 
@@ -166,7 +188,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene(0);
+           var index = SceneManager.GetActiveScene().buildIndex;
+
+
+            SceneManager.LoadScene(index);
             
 
             
@@ -175,6 +200,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextLevel()
+    {
+        CalculateScore();
+
+        PlayerPrefs.SetInt("FirstTime", score);
+
+        var scene = SceneManager.GetActiveScene().buildIndex;
+        
+        scene++;
+
+        print("changing to scene " + scene);
+        SceneManager.LoadScene(scene);
+
+
+
+
+    }
+
+    public void CompleteGame()
+    {
+        print("completed");
+        SceneManager.LoadScene(0);
+    }
 
     public void ShowBullets()
     {
