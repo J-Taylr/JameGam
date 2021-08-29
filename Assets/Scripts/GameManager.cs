@@ -127,10 +127,11 @@ public class GameManager : MonoBehaviour
         int firstLvl = PlayerPrefs.GetInt("FirstTime");
         int overallTime = firstLvl + score;
 
+        PlayerPrefs.SetInt("Score", overallTime);
 
-       if (PlayerPrefs.GetInt("Score") > overallTime)
+        if (PlayerPrefs.GetInt("HighScore") > overallTime)
         {
-            PlayerPrefs.SetInt("Score", overallTime);
+            PlayerPrefs.SetInt("HighScore", overallTime);
         }
     }
 
@@ -220,8 +221,9 @@ public class GameManager : MonoBehaviour
 
     public void CompleteGame()
     {
-        print("completed");
-        SceneManager.LoadScene(0);
+        var scene = SceneManager.GetActiveScene().buildIndex;
+        scene++;
+        SceneManager.LoadScene(scene);
     }
 
     public void ShowBullets()
